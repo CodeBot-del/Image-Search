@@ -1,3 +1,4 @@
 cloudinary_images/
 imgsearch-env/
 kmeans_model.pkl
+cloudinary_download.py
