@@ -39,7 +39,7 @@ class VarsitySrch:
                     np.save(os.path.join(save_to, file_name + '.npy'), features)
         print("Feature extraction and saving completed.")
 
-    def get_optimal_num_clusters(self, features_folder, max_clusters=20, n_components=50):
+    def get_optimal_num_clusters(self, features_folder, max_clusters, n_components):
         """
         Determines the optimal number of clusters using the Elbow Method and Silhouette Score.
         """
@@ -83,7 +83,7 @@ class VarsitySrch:
         plt.show()
         print("Elbow Method and Silhouette Score analysis completed.")
 
-    def train_clusters(self, features_folder, num_clusters=100, model_filename='kmeans_model.pkl', csv_filename='cluster_assignments.csv'):
+    def train_clusters(self, features_folder, model_filename, csv_filename, num_clusters):
         """
         Trains K-means clustering on image features and saves the model and cluster assignments.
         """
@@ -109,9 +109,9 @@ class VarsitySrch:
         df.to_csv(csv_filename, index=False)
         print(f"Model saved to {model_filename} and cluster assignments saved to {csv_filename}.")
 
-    def search_similar_images(self, image_path, model_filename, features_folder, top_n=5):
+    def search_similar_images(self, image_path, model_filename, csv_file, top_n):
         """
-        Searches for similar images to a given image based on cluster assignments.
+        Searches for similar images to a given image based on cluster assignments using a saved CSV file.
         """
         with open(model_filename, 'rb') as file:
             kmeans = pickle.load(file)
@@ -124,15 +124,9 @@ class VarsitySrch:
 
         cluster_label = kmeans.predict([features])[0]
 
-        similar_images = []
-        for root, dirs, files in os.walk(features_folder):
-            for file in files:
-                if file.lower().endswith('.npy'):
-                    feature = np.load(os.path.join(root, file))
-                    if feature.ndim > 1:
-                        feature = feature.flatten()
-                    if kmeans.predict([feature])[0] == cluster_label:
-                        similar_images.append(file)
+        df = pd.read_csv(csv_file)
+        similar_images = df[df['Cluster'] == cluster_label]['Image_File'].tolist()
 
         print(f"Found {len(similar_images)} images in the same cluster.")
         return similar_images[:top_n]
+
