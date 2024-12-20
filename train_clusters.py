@@ -10,11 +10,13 @@ parser = argparse.ArgumentParser(description='Image Clustering')
 parser.add_argument('--features', type=str, help='Path to the folder containing image features in .npy files')
 args = parser.parse_args()
 
+NUM_CLUSTERS = 100
+
 # Folder path containing the .npy feature files
 feature_folder = args.features  # Use the provided feature folder path
 
 # Number of clusters (you can adjust this)
-num_clusters = 1000  # Adjust as needed
+num_clusters = NUM_CLUSTERS 
 
 # List to store feature vectors
 features = []

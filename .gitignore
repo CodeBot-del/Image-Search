@@ -1,4 +1,5 @@
 cloudinary_images/
 imgsearch-env/
+varsitymart_img_features_vgg/
 kmeans_model.pkl
 cloudinary_download.py
