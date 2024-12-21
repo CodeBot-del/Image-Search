@@ -13,7 +13,7 @@ I used ImageNet for extracting image features by the time of releasing this. The
 - Train a K-means clusering model on the features to group features into different clusters. Once training is complete, you will have the clustering model and a csv file containing cluster assignments information
 - Use the model and the csv file to predict and retrieve similar images given a test image.
 
-## Using the VarsitySrch Library
+## Using the Vasrch Library
 There are four (4) callable methods:
 1. `extract_features` method which takes in the following arguments
     - `img_folder` which is the the folder containing the images you want to train on, this being your image database where you'll want to retrieve search results from.
