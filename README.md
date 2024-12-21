@@ -20,7 +20,7 @@ There are four (4) callable methods:
 1. `extract_features` method which takes in the following arguments
     - `img_folder` which is the the folder containing the images you want to train on, this being your image database where you'll want to retrieve search results from.
     - `save_to` which is the folder name to where you want the features to be saved.
-    We use ImageNet as our base model where we get the features at the `block5_pool` layer right before the classification layer.
+    I used VGG16 as our base model where we get the features at the `block5_pool` layer right before the classification layer.
 
 2. `get_optimal_num_clusters` method which takes in the following arguments
     - `features_folder` which is the folder to where you once saved the extracted features.
