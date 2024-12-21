@@ -1,6 +1,11 @@
 ## **Product Image Search using K-Means Clustering**
+This approach is suitable for e-commerce platforms where you want to return similar products that looks the same as the searched product. The approach can be used on variety of use cases and so it is implemented in such a way you can use it for whatever case you have that involves finding similar images from a collection of images given an image input.
+The resulted models are lightweight and can be deployed on CPU instances with an approximately less than 500ms response time.
+Training the model depends on how large your dataset is. For data collections with less or equal to 5000 images, training on CPU is okay, more than that, a GPU is recommended for faster training times.
 
-### Bare-metal implementation of the product search feature using K-Means Clustering
+I used ImageNet for extracting image features by the time of releasing this. The plan is to explore other base image models and add them to package where you'll have to pass them as an argument/parameter when calling the `extract_features` function.
+
+### Bare-metal implementation of the product image search using K-Means Clustering
 
 ### Steps:
 - Extract features from images using a pretrained model (VGG, ResNet, etc.)
@@ -27,4 +32,8 @@ There are four (4) callable methods:
     - `csv_filename` the name you want your image names and cluster assignments information (metadata) to be saved in. This will be useful when searching images later on, and even integrating to your app.
     - `num_clusters` the number of clusters you want your model to be trained on.
 
-4. `search_similar_images`
+4. `search_similar_images` method which returns a cluster with similar images to the given image. The arguments are:
+    - `image_path` which is the path to the image you wanna search.
+    - `model_filename` which is the name of your trained model.
+    - `csv_file` which is the name of the metadata csv saved during training.
+    - `top_n` which is the number of image results you want to be returned.
