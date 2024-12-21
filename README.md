@@ -5,6 +5,8 @@ Training the model depends on how large your dataset is. For data collections wi
 
 I used ImageNet for extracting image features by the time of releasing this. The plan is to explore other base image models and add them to package where you'll have to pass them as an argument/parameter when calling the `extract_features` function.
 
+PS: The purposed of the method to get optimal number of clusters is to give you a visualization so you can choose yourself which number of cluster is suitable for your dataset. So it won't choose one for you (this may change later) for now you will have to select a number yourself based on what you see from the Elbow and Silhoutte plots.
+
 ### Bare-metal implementation of the product image search using K-Means Clustering
 
 ### Steps:
@@ -37,3 +39,30 @@ There are four (4) callable methods:
     - `model_filename` which is the name of your trained model.
     - `csv_file` which is the name of the metadata csv saved during training.
     - `top_n` which is the number of image results you want to be returned.
+
+### Sample code on using the library
+```python
+from varsitysrch import VaSrch
+
+search = VaSrch()
+
+image_path = 'test_image.jpg'
+image_folder = './images_folder_path'
+features_folder = './features_folder_path'
+num_clusters = 20  #choose this number based on elbow and silhoutte plots
+csv_file = "metadata.csv"
+model_filename = "test_model.pkl"
+top_n = 5
+
+search.extract_features(image_folder, features_folder)
+visualize_clusters = search.get_optimal_num_clusters(features_folder, max_clusters=100, n_components=10)
+search.train_clusters(features_folder, model_filename, csv_file, num_clusters)
+
+similar_images = search.search_similar_images(image_path, model_filename, csv_file, top_n)
+print(f"Similar images to {image_path} are:")
+for image in similar_images:
+    print(image)
+    
+```
+
+If you encounter any issues please open an issue and I will do my best to reach out. If you want to contribute to the project just fork the repo, do your things and send a pull request.

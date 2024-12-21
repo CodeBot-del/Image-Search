@@ -13,7 +13,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing import image
 import pickle
 
-class VarsitySrch:
+class VaSrch:
     def __init__(self):
         # Initialize the VGG16 model for feature extraction
         base_model = VGG16(weights='imagenet', include_top=False)
