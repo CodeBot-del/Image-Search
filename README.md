@@ -5,7 +5,7 @@ Training the model depends on how large your dataset is. For data collections wi
 
 I used ImageNet for extracting image features by the time of releasing this. The plan is to explore other base image models and add them to package where you'll have to pass them as an argument/parameter when calling the `extract_features` function.
 
-PS: The purposed of the method to get optimal number of clusters is to give you a visualization so you can choose yourself which number of cluster is suitable for your dataset. So it won't choose one for you (this may change later) for now you will have to select a number yourself based on what you see from the Elbow and Silhoutte plots.
+PS: The purpose of the method to get optimal number of clusters is to give you a visualization so you can choose yourself which number of cluster is suitable for your dataset. So it won't choose one for you (this may change later) for now you will have to select a number yourself based on what you see from the Elbow and Silhoutte plots.
 
 ### Bare-metal implementation of the product image search using K-Means Clustering
 
