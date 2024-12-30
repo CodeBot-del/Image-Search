@@ -1,3 +1,5 @@
+![Logo](heroimg.jpg)
+# VASRCH
 ## **Product Image Search using K-Means Clustering**
 This approach is suitable for e-commerce platforms where you want to return similar products that looks the same as the searched product. The approach can be used on variety of use cases and so it is implemented in such a way you can use it for whatever case you have that involves finding similar images from a collection of images given an image input.
 The resulted models are lightweight and can be deployed on CPU instances with an approximately less than 500ms response time.
