@@ -1,4 +1,4 @@
-from .varsitysrch import VaSrch
+from .vasrch import VaSrch
 
 # Create an instance of the VaSrch class to expose its methods as module-level functions
 _vasrch_instance = VaSrch()
